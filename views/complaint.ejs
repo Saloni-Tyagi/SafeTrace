@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report Complaint</title>
+</head>
+<body>
+
+    <h1>Report Complaint</h1>
+
+    <form action="/complaint" method="POST">
+
+        <input
+            type="text"
+            name="title"
+            placeholder="Complaint Title"
+            required
+        >
+
+        <br><br>
+
+        <textarea
+            name="description"
+            placeholder="Describe the incident"
+            required
+        ></textarea>
+
+        <br><br>
+
+        <input
+            type="text"
+            name="location"
+            placeholder="Location"
+            required
+        >
+
+        <br><br>
+
+        <input
+            type="text"
+            name="vehicleNumber"
+            placeholder="Vehicle Number (Optional)"
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Submit Complaint
+        </button>
+
+    </form>
+
+</body>
+</html>
