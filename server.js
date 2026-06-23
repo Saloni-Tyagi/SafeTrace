@@ -44,10 +44,6 @@ app.get("/dashboard", authMiddleware, (req, res) => {
     res.render("dashboard");
 });
 
-// complaint route
-app.get("/complaint", authMiddleware, (req, res) => {
-    res.render("complaint");
-});
 
 // register user
 app.post("/register", async (req, res) => {
@@ -123,6 +119,20 @@ app.post("/login", async (req, res) => {
 app.get("/dashboard", authMiddleware, (req, res) => {
     res.render("dashboard");
 });
+
+// complaint route
+app.get("/complaint", authMiddleware, (req, res) => {
+    res.render("complaint");
+});
+
+//  temporary post route
+app.post("/complaint", authMiddleware, (req, res) => {
+
+    console.log(req.body);
+
+    res.send("Complaint received");
+});
+
 
 app.get("/logout", (req, res) => {
     res.clearCookie("token");
