@@ -16,6 +16,8 @@ const authMiddleware = require("./middleware/authMiddleware");
 
 const authRoutes = require("./routes/authRoutes");
 
+const complaintRoutes = require("./routes/complaintRoutes");
+
 const app = express();
 
 // Middleware
@@ -28,6 +30,8 @@ app.set("view engine", "ejs");
 
 // Routes from authRoutes.js
 app.use("/", authRoutes);
+
+app.use("/", complaintRoutes);
 
 // Home route
 app.get("/", (req, res) => {
