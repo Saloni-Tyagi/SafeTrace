@@ -15,3 +15,9 @@ router.post(
 );
 
 module.exports = router;
+
+router.get(
+    "/my-complaints",
+    authMiddleware,
+    complaintController.getMyComplaints
+);

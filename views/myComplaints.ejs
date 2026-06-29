@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Complaints</h1>
+
+    <% complaints.forEach(c => { %>
+        <div>
+            <h3><%= c.title %></h3>
+            <p><%= c.description %></p>
+            <p><b>Location:</b> <%= c.location %></p>
+            <p><b>Vehicle:</b> <%= c.vehicleNumber %></p>
+        </div>
+        <hr>
+    <% }) %>
+</body>
+</html>

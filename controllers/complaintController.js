@@ -25,3 +25,18 @@ exports.submitComplaint = async (req, res) => {
     }
 };
 
+exports.getMyComplaints = async (req, res) => {
+    try {
+        const complaints = await Complaint.find({
+            user: req.user.id
+        });
+
+        res.render("myComplaints", {
+            complaints
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.send("Error fetching complaints");
+    }
+};
