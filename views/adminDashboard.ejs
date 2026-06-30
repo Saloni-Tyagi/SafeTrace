@@ -1,0 +1,19 @@
+<h1>Admin Dashboard</h1>
+
+<% complaints.forEach((complaint) => { %>
+
+    <div>
+        <h3><%= complaint.title %></h3>
+
+        <p><%= complaint.description %></p>
+
+        <p>User: <%= complaint.user.name %></p>
+
+        <p>Email: <%= complaint.user.email %></p>
+
+        <p>Status: <%= complaint.status %></p>
+
+        <hr>
+    </div>
+
+<% }) %>

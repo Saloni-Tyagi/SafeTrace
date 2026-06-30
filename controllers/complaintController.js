@@ -37,6 +37,21 @@ exports.getMyComplaints = async (req, res) => {
 
     } catch (err) {
         console.log(err);
-        res.send("Error fetching complaints");
+        res.status(500).send("Server Error");
+    }
+};
+
+exports.getAllComplaints = async (req, res) => {
+    try {
+        const complaints = await Complaint.find()
+            .populate("user", "name email");
+
+        res.render("adminDashboard", {
+            complaints
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Server Error");
     }
 };
