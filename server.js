@@ -18,6 +18,8 @@ const authRoutes = require("./routes/authRoutes");
 
 const complaintRoutes = require("./routes/complaintRoutes");
 
+const adminRoutes = require("./routes/adminRoutes");
+
 const app = express();
 
 // Middleware
@@ -32,6 +34,8 @@ app.set("view engine", "ejs");
 app.use("/", authRoutes);
 
 app.use("/", complaintRoutes);
+
+app.use("/admin", adminRoutes);
 
 // Home route
 app.get("/", (req, res) => {

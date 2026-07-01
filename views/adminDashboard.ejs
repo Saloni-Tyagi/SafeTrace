@@ -14,6 +14,26 @@
         <p>Status: <%= complaint.status %></p>
 
         <hr>
+
+        <form action="/admin/complaints/<%= complaint._id %>/status" method="POST">
+
+            <select name="status">
+                <option value="Pending" <%= complaint.status === "Pending" ? "selected" : "" %>>
+                    Pending
+                </option>
+
+                <option value="In Progress" <%= complaint.status === "In Progress" ? "selected" : "" %>>
+                    In Progress
+                </option>
+
+                <option value="Resolved" <%= complaint.status === "Resolved" ? "selected" : "" %>>
+                    Resolved
+                </option>
+            </select>
+
+            <button type="submit">Update</button>
+
+        </form>
     </div>
 
 <% }) %>
