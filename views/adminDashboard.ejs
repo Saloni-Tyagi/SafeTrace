@@ -1,53 +1,121 @@
-<h1>Admin Dashboard</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 
-<h2>Statistics</h2>
+<div class="container mt-4">
 
-<p>Total Complaints: <%= totalComplaints %></p>
-<p>Pending: <%= pendingComplaints %></p>
-<p>In Progress: <%= inProgressComplaints %></p>
-<p>Resolved: <%= resolvedComplaints %></p>
+    <h1 class="mb-4">Admin Dashboard</h1>
 
-<hr>
+    <!-- Statistics Cards -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Total Complaints</h5>
+                    <h2><%= totalComplaints %></h2>
+                </div>
+            </div>
+        </div>
 
-<% complaints.forEach((complaint) => { %>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Pending</h5>
+                    <h2><%= pendingComplaints %></h2>
+                </div>
+            </div>
+        </div>
 
-    <div>
-        <h3><%= complaint.title %></h3>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>In Progress</h5>
+                    <h2><%= inProgressComplaints %></h2>
+                </div>
+            </div>
+        </div>
 
-        <p><%= complaint.description %></p>
-
-        <p>User: <%= complaint.user.name %></p>
-
-        <p>Email: <%= complaint.user.email %></p>
-
-        <p>Status: <%= complaint.status %></p>
-
-        <form action="/admin/complaints/<%= complaint._id %>/status" method="POST">
-
-            <select name="status">
-                <option value="Pending" <%= complaint.status === "Pending" ? "selected" : "" %>>
-                    Pending
-                </option>
-
-                <option value="In Progress" <%= complaint.status === "In Progress" ? "selected" : "" %>>
-                    In Progress
-                </option>
-
-                <option value="Resolved" <%= complaint.status === "Resolved" ? "selected" : "" %>>
-                    Resolved
-                </option>
-            </select>
-
-            <button type="submit">Update</button>
-
-        </form>
-
-        <form action="/admin/complaints/<%= complaint._id %>/delete" method="POST">
-            <button type="submit">Delete</button>
-        </form>
-        
-
-        <hr>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Resolved</h5>
+                    <h2><%= resolvedComplaints %></h2>
+                </div>
+            </div>
+        </div>
     </div>
 
-<% }) %>
+    <!-- Complaints -->
+    <% complaints.forEach((complaint) => { %>
+
+    <div class="card mt-3">
+        <div class="card-body">
+
+            <h3><%= complaint.title %></h3>
+
+            <p><%= complaint.description %></p>
+
+            <p><strong>User:</strong> <%= complaint.user.name %></p>
+
+            <p><strong>Email:</strong> <%= complaint.user.email %></p>
+
+            <p><strong>Status:</strong> <%= complaint.status %></p>
+
+            <p><strong>Submitted On:</strong>
+                <%= complaint.createdAt.toLocaleString() %>
+            </p>
+
+            <p>
+                <strong>Last Updated:</strong>
+                <%= complaint.updatedAt
+                    ? complaint.updatedAt.toLocaleString()
+                    : "Not Updated Yet" %>
+            </p>
+
+            <form action="/admin/complaints/<%= complaint._id %>/status"
+                  method="POST"
+                  class="mb-2">
+
+                <select name="status" class="form-select mb-2">
+                    <option value="Pending"
+                        <%= complaint.status === "Pending" ? "selected" : "" %>>
+                        Pending
+                    </option>
+
+                    <option value="In Progress"
+                        <%= complaint.status === "In Progress" ? "selected" : "" %>>
+                        In Progress
+                    </option>
+
+                    <option value="Resolved"
+                        <%= complaint.status === "Resolved" ? "selected" : "" %>>
+                        Resolved
+                    </option>
+                </select>
+
+                <button type="submit" class="btn btn-primary">
+                    Update
+                </button>
+            </form>
+
+            <form action="/admin/complaints/<%= complaint._id %>/delete"
+                  method="POST">
+
+                <button type="submit" class="btn btn-danger">
+                    Delete
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <% }) %>
+
+</div>
+
+</body>
+</html>
