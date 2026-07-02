@@ -12,4 +12,18 @@ router.get(
     adminController.dashboard
 );
 
+router.post(
+    "/complaints/:id/status",
+    authMiddleware,
+    adminMiddleware,
+    adminController.updateComplaintStatus
+);
+
+router.post(
+    "/complaints/:id/delete",
+    authMiddleware,
+    adminMiddleware,
+    adminController.deleteComplaint
+);
+
 module.exports = router;

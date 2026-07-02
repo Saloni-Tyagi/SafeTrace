@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-
 const complaintSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -26,16 +24,13 @@ const complaintSchema = new mongoose.Schema({
         type: String
     },
 
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-
     status: {
         type: String,
         enum: ["Pending", "In Progress", "Resolved", "Rejected"],
         default: "Pending"
     }
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model("Complaint", complaintSchema);

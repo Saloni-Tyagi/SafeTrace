@@ -1,5 +1,14 @@
 <h1>Admin Dashboard</h1>
 
+<h2>Statistics</h2>
+
+<p>Total Complaints: <%= totalComplaints %></p>
+<p>Pending: <%= pendingComplaints %></p>
+<p>In Progress: <%= inProgressComplaints %></p>
+<p>Resolved: <%= resolvedComplaints %></p>
+
+<hr>
+
 <% complaints.forEach((complaint) => { %>
 
     <div>
@@ -12,8 +21,6 @@
         <p>Email: <%= complaint.user.email %></p>
 
         <p>Status: <%= complaint.status %></p>
-
-        <hr>
 
         <form action="/admin/complaints/<%= complaint._id %>/status" method="POST">
 
@@ -34,6 +41,13 @@
             <button type="submit">Update</button>
 
         </form>
+
+        <form action="/admin/complaints/<%= complaint._id %>/delete" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+        
+
+        <hr>
     </div>
 
 <% }) %>
