@@ -52,10 +52,6 @@ app.get("/dashboard", authMiddleware, (req, res) => {
     res.render("dashboard");
 });
 
-// complaint route
-app.get("/complaint", (req, res) => {
-    res.render("complaint");
-});
 
 //  temporary post route
 // app.post("/complaint", authMiddleware, (req, res) => {
