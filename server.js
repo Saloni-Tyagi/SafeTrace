@@ -22,6 +22,8 @@ const adminRoutes = require("./routes/adminRoutes");
 
 const contactRoutes = require("./routes/contactRoutes");
 
+const alertRoutes = require("./routes/alertRoutes");
+
 const app = express();
 
 // Middleware
@@ -38,6 +40,8 @@ app.use("/", authRoutes);
 app.use("/", complaintRoutes);
 
 app.use("/", contactRoutes);
+
+app.use("/", alertRoutes);
 
 app.use("/admin", adminRoutes);
 
