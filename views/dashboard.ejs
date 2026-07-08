@@ -1,100 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <title>SafeTrace Dashboard</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        body{
+            font-family:'Poppins',sans-serif;
+            background:#f4f7fb;
+        }
+
+        .navbar{
+            background:#0f172a;
+        }
+
+        .navbar-brand{
+            color:white;
+            font-weight:600;
+        }
+
+        .navbar a{
+            color:white;
+        }
+
+        .card{
+            border:none;
+            border-radius:18px;
+            transition:.3s;
+            cursor:pointer;
+            box-shadow:0 8px 25px rgba(0,0,0,.08);
+        }
+
+        .card:hover{
+            transform:translateY(-6px);
+        }
+
+        .card i{
+            font-size:40px;
+            color:#2563eb;
+        }
+
+        .sos-card{
+            background:linear-gradient(135deg,#dc2626,#ef4444);
+            color:white;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(220,38,38,.3);
+        }
+
+        #sosBtn{
+            font-size:24px;
+            font-weight:bold;
+            border-radius:50px;
+            padding:15px;
+        }
+
+    </style>
+
 </head>
 
-<body class="bg-light">
+<body>
+
+<nav class="navbar px-4">
+
+    <span class="navbar-brand">
+        🛡️ SafeTrace
+    </span>
+
+    <a href="/logout" class="btn btn-outline-light">
+        Logout
+    </a>
+
+</nav>
 
 <div class="container mt-5">
 
-    <h2 class="mb-4">🛡️ SafeTrace Dashboard</h2>
+    <h2>Welcome 👋</h2>
 
-    <div class="list-group">
+    <p class="text-muted">
+        Your personal safety dashboard
+    </p>
 
-        <a href="/complaint" class="list-group-item list-group-item-action">
-            🚨 Report Complaint
-        </a>
+    <div class="row g-4 mt-2">
 
-        <a href="/my-complaints" class="list-group-item list-group-item-action">
-            📋 My Complaints
-        </a>
+        <div class="col-md-6">
+            <a href="/complaint" style="text-decoration:none;color:black;">
+                <div class="card p-4">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
 
-        <a href="/contacts" class="list-group-item list-group-item-action">
-            👥 Manage Emergency Contacts
-        </a>
+                    <h4 class="mt-3">
+                        Report Complaint
+                    </h4>
+
+                    <p>Report suspicious vehicles instantly.</p>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="/my-complaints" style="text-decoration:none;color:black;">
+                <div class="card p-4">
+
+                    <i class="bi bi-file-earmark-text-fill"></i>
+
+                    <h4 class="mt-3">
+                        My Complaints
+                    </h4>
+
+                    <p>View all submitted complaints.</p>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="/contacts" style="text-decoration:none;color:black;">
+                <div class="card p-4">
+
+                    <i class="bi bi-people-fill"></i>
+
+                    <h4 class="mt-3">
+                        Emergency Contacts
+                    </h4>
+
+                    <p>Manage trusted contacts.</p>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card sos-card p-4">
+
+                <h2>🚨 Emergency SOS</h2>
+
+                <p>
+                    Press only if you need immediate help.
+                </p>
+
+                <button
+                    id="sosBtn"
+                    class="btn btn-light">
+
+                    🚨 SOS NOW
+
+                </button>
+
+                <div id="status" class="mt-3"></div>
+
+            </div>
+
+        </div>
 
     </div>
-
-    <button
-        id="sosBtn"
-        class="btn btn-danger btn-lg w-100 mt-4">
-        🚨 SOS EMERGENCY
-    </button>
-
-    <div id="status" class="mt-3"></div>
-
-    <a href="/logout" class="btn btn-secondary mt-4">
-        Logout
-    </a>
 
 </div>
 
 <script>
 
-const sosBtn = document.getElementById("sosBtn");
+const btn=document.getElementById("sosBtn");
 
-sosBtn.addEventListener("click", () => {
+btn.addEventListener("click",()=>{
 
-    if (!navigator.geolocation) {
-        alert("Geolocation is not supported.");
-        return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-
-        async (position) => {
-
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-
-            const response = await fetch("/sos", {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    latitude,
-                    longitude
-                })
-
-            });
-
-            const data = await response.json();
-
-            document.getElementById("status").innerHTML = `
-                <div class="alert alert-success">
-                    ${data.message}
-                </div>
-            `;
-
-        },
-
-        () => {
-            alert("Location permission denied.");
-        }
-
-    );
+    btn.innerHTML="📍 Getting Location...";
+    btn.disabled=true;
 
 });
 
 </script>
 
 </body>
+
 </html>
