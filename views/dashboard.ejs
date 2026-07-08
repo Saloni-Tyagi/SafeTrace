@@ -167,14 +167,99 @@
 
 <script>
 
-const btn=document.getElementById("sosBtn");
+const btn = document.getElementById("sosBtn");
+const status = document.getElementById("status");
 
-btn.addEventListener("click",()=>{
+btn.addEventListener("click", () => {
 
-    btn.innerHTML="📍 Getting Location...";
-    btn.disabled=true;
+    if (!navigator.geolocation) {
+        status.innerHTML = `
+            <div class="alert alert-danger">
+                Geolocation is not supported by your browser.
+            </div>
+        `;
+        return;
+    }
+
+    btn.innerHTML = `
+        <span class="spinner-border spinner-border-sm"></span>
+        Getting Location...
+    `;
+    btn.disabled = true;
+
+    navigator.geolocation.getCurrentPosition(
+
+        async (position) => {
+
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            btn.innerHTML = `
+                <span class="spinner-border spinner-border-sm"></span>
+                Sending SOS...
+            `;
+
+            try {
+
+                const response = await fetch("/sos", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        latitude,
+                        longitude
+                    })
+
+                });
+
+                const data = await response.json();
+
+                status.innerHTML = `
+                    <div class="alert alert-success mt-3">
+                        ✅ ${data.message}
+                    </div>
+                `;
+
+                btn.innerHTML = "🚨 SOS Sent";
+                btn.classList.remove("btn-light");
+                btn.classList.add("btn-success");
+
+            } catch (err) {
+
+                status.innerHTML = `
+                    <div class="alert alert-danger mt-3">
+                        Failed to send SOS.
+                    </div>
+                `;
+
+                btn.innerHTML = "🚨 Try Again";
+                btn.disabled = false;
+
+            }
+
+        },
+
+        () => {
+
+            status.innerHTML = `
+                <div class="alert alert-warning mt-3">
+                    Location permission denied.
+                </div>
+            `;
+
+            btn.innerHTML = "🚨 SOS NOW";
+            btn.disabled = false;
+
+        }
+
+    );
 
 });
+
 
 </script>
 
