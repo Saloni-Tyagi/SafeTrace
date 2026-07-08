@@ -1,22 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Dashboard</title>
+    <title>SafeTrace Dashboard</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
 
-    <h1>SafeTrace Dashboard</h1>
+<body class="bg-light">
 
-    <p>Welcome! What would you like to do?</p>
+<div class="container mt-5">
 
-    <ul>
-        <li><a href="/complaint">🚨 Report Complaint</a></li>
-        <li><a href="/my-complaints">📋 My Complaints</a></li>
-        <li><a href="/logout">🚪 Logout</a></li>
-    </ul>
+    <h1 class="mb-3">🛡️ SafeTrace Dashboard</h1>
 
-    
+    <p class="text-muted">
+        Welcome! Choose an action below.
+    </p>
+
+    <div class="list-group mt-4">
+
+        <a href="/complaint" class="list-group-item list-group-item-action">
+            🚨 Report Complaint
+        </a>
+
+        <a href="/my-complaints" class="list-group-item list-group-item-action">
+            📋 My Complaints
+        </a>
+
+        <a href="/contacts" class="list-group-item list-group-item-action">
+            👥 Manage Emergency Contacts
+        </a>
+
+        <a href="/logout" class="list-group-item list-group-item-action text-danger">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</div>
 
 </body>
 </html>
