@@ -218,10 +218,16 @@ btn.addEventListener("click", () => {
 
                 const data = await response.json();
 
+                const now = new Date().toLocaleString();
+
                 status.innerHTML = `
-                    <div class="alert alert-success mt-3">
-                        ✅ ${data.message}
-                    </div>
+                <div class="alert alert-success mt-3 shadow-sm rounded-3">
+                    <h5>✅ Emergency Alert Sent</h5>
+                    <p class="mb-1">
+                        Your current location has been recorded successfully.
+                    </p>
+                    <small><strong>Time:</strong> ${now}</small>
+                </div>
                 `;
 
                 btn.innerHTML = "🚨 SOS Sent";
