@@ -1,22 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="UTF-8">
 
     <title>Alert History</title>
 
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- ✅ Our SafeTrace CSS -->
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
-<body class="bg-light">
+<body>
+
+<nav class="navbar">
+
+    <div class="container">
+
+        <span class="navbar-brand">
+            🛡️ SafeTrace
+        </span>
+
+        <a href="/dashboard" class="btn btn-outline-light">
+            Dashboard
+        </a>
+
+    </div>
+
+</nav>
 
 <div class="container mt-5">
 
-    <h2 class="mb-4">
+    <h2 class="page-title">
         🚨 SOS Alert History
     </h2>
+
+    <p class="page-subtitle">
+        View all emergency alerts you have sent.
+    </p>
 
     <% if(alerts.length===0){ %>
 
@@ -26,45 +54,62 @@
 
     <% } %>
 
-    <% alerts.forEach(alert=>{ %>
+    <% alerts.forEach(alert => { %>
 
-        <div class="card mb-3 shadow-sm">
+        <div class="card p-4 mb-4">
 
-            <div class="card-body">
+            <h4 class="text-danger mb-3">
+                🚨 Emergency Alert
+            </h4>
 
-                <h5>
-                    🚨 Emergency Alert
-                </h5>
+            <p>
+                <i class="bi bi-geo-alt-fill text-danger"></i>
 
-                <p>
+                <strong>Latitude:</strong>
 
-                    <strong>Latitude:</strong>
-                    <%= alert.latitude %>
+                <%= alert.latitude %>
+            </p>
 
-                    <br>
+            <p>
 
-                    <strong>Longitude:</strong>
-                    <%= alert.longitude %>
+                <i class="bi bi-geo-fill text-primary"></i>
 
-                </p>
+                <strong>Longitude:</strong>
 
-                <p>
+                <%= alert.longitude %>
 
-                    <strong>Status:</strong>
+            </p>
 
-                    <span class="badge bg-success">
-                        <%= alert.status %>
-                    </span>
+            <p>
 
-                </p>
+                <i class="bi bi-check-circle-fill text-success"></i>
 
-                <small class="text-muted">
+                <strong>Status:</strong>
 
-                    <%= alert.createdAt.toLocaleString() %>
+                <span class="badge bg-success">
+                    <%= alert.status %>
+                </span>
 
-                </small>
+            </p>
 
-            </div>
+            <p class="text-muted">
+
+                <i class="bi bi-clock-fill"></i>
+
+                <%= alert.createdAt.toLocaleString() %>
+
+            </p>
+
+            <a
+                href="https://www.google.com/maps?q=<%= alert.latitude %>,<%= alert.longitude %>"
+                target="_blank"
+                class="btn btn-primary">
+
+                <i class="bi bi-map"></i>
+
+                View on Google Maps
+
+            </a>
 
         </div>
 
