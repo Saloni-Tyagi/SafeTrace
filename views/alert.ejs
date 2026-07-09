@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Alert History</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">
+        🚨 SOS Alert History
+    </h2>
+
+    <% if(alerts.length===0){ %>
+
+        <div class="alert alert-info">
+            No alerts sent yet.
+        </div>
+
+    <% } %>
+
+    <% alerts.forEach(alert=>{ %>
+
+        <div class="card mb-3 shadow-sm">
+
+            <div class="card-body">
+
+                <h5>
+                    🚨 Emergency Alert
+                </h5>
+
+                <p>
+
+                    <strong>Latitude:</strong>
+                    <%= alert.latitude %>
+
+                    <br>
+
+                    <strong>Longitude:</strong>
+                    <%= alert.longitude %>
+
+                </p>
+
+                <p>
+
+                    <strong>Status:</strong>
+
+                    <span class="badge bg-success">
+                        <%= alert.status %>
+                    </span>
+
+                </p>
+
+                <small class="text-muted">
+
+                    <%= alert.createdAt.toLocaleString() %>
+
+                </small>
+
+            </div>
+
+        </div>
+
+    <% }) %>
+
+</div>
+
+</body>
+</html>
