@@ -1,35 +1,4 @@
-/* ===========================
-   SafeTrace Global Styles
-=========================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-/* ---------- Variables ---------- */
-
-:root{
-
-    --primary:#2563eb;
-    --primary-dark:#1d4ed8;
-
-    --danger:#dc2626;
-
-    --success:#16a34a;
-
-    --warning:#f59e0b;
-
-    --dark:#0f172a;
-
-    --light:#f4f7fb;
-
-    --white:#ffffff;
-
-    --shadow:0 10px 25px rgba(0,0,0,.08);
-
-    --radius:18px;
-
-}
-
-/* ---------- Reset ---------- */
 
 *{
     margin:0;
@@ -38,190 +7,70 @@
 }
 
 body{
-
     font-family:'Poppins',sans-serif;
-
-    background:var(--light);
-
-    color:#222;
-
+    background:#f8fafc;
+    color:#0f172a;
 }
 
-/* ---------- Navbar ---------- */
-
 .navbar{
-
-    background:var(--dark);
-
+    background:#0f172a;
     padding:15px 30px;
-
 }
 
 .navbar-brand{
-
-    color:white !important;
-
-    font-weight:600;
-
+    color:#fff;
     font-size:24px;
-
-}
-
-.navbar .btn{
-
-    border-radius:30px;
-
-}
-
-/* ---------- Cards ---------- */
-
-.card{
-
-    border:none;
-
-    border-radius:var(--radius);
-
-    box-shadow:var(--shadow);
-
-    transition:.3s;
-
-}
-
-.card:hover{
-
-    transform:translateY(-6px);
-
-}
-
-/* ---------- Icons ---------- */
-
-.feature-icon{
-
-    font-size:42px;
-
-    color:var(--primary);
-
-}
-
-/* ---------- Buttons ---------- */
-
-.btn-primary{
-
-    background:var(--primary);
-
-    border:none;
-
-}
-
-.btn-primary:hover{
-
-    background:var(--primary-dark);
-
-}
-
-.btn-danger{
-
-    border-radius:50px;
-
     font-weight:600;
-
 }
-
-/* ---------- SOS Card ---------- */
-
-.sos-card{
-
-    background:linear-gradient(135deg,#dc2626,#ef4444);
-
-    color:white;
-
-    border-radius:20px;
-
-    box-shadow:0 10px 30px rgba(220,38,38,.3);
-
-}
-
-#sosBtn{
-
-    font-size:22px;
-
-    font-weight:600;
-
-    border-radius:40px;
-
-    padding:14px;
-
-}
-
-/* ---------- Forms ---------- */
-
-.form-control{
-
-    border-radius:12px;
-
-    padding:12px;
-
-}
-
-.form-control:focus{
-
-    box-shadow:none;
-
-    border-color:var(--primary);
-
-}
-
-/* ---------- Tables ---------- */
-
-.table{
-
-    background:white;
-
-    border-radius:15px;
-
-    overflow:hidden;
-
-}
-
-/* ---------- Badges ---------- */
-
-.badge{
-
-    font-size:14px;
-
-}
-
-/* ---------- Headings ---------- */
-
-/* ===========================
-   Page Layout
-=========================== */
 
 .page-title{
     font-size:32px;
     font-weight:700;
-    color:var(--dark);
+    margin-bottom:5px;
 }
 
 .page-subtitle{
-    color:#6b7280;
+    color:#64748b;
     margin-bottom:30px;
 }
 
-/* ===========================
-   Navbar
-=========================== */
-
-.navbar .container{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    transition:.3s;
 }
 
-/* ===========================
-   Card Headings
-=========================== */
+.card:hover{
+    transform:translateY(-5px);
+}
 
-.card h4{
-    font-weight:600;
+.btn-primary{
+    background:#2563eb;
+    border:none;
+    border-radius:10px;
+    padding:10px 20px;
+}
+
+.btn-danger{
+    border-radius:10px;
+}
+
+.form-control{
+    border-radius:10px;
+    padding:12px;
+}
+
+.table{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.shadow-card{
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.section{
+    margin-top:40px;
 }
