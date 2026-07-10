@@ -153,6 +153,36 @@
             </a>
 
         </div>
+        
+        <% if (user.isAdmin) { %>
+
+        <div class="col-md-6">
+
+            <a href="/admin" style="text-decoration:none;color:black;">
+
+                <div class="card p-4">
+
+                    <i class="bi bi-shield-lock-fill"></i>
+
+                    <h4 class="mt-3">
+
+                        Admin Dashboard
+
+                    </h4>
+
+                    <p>
+
+                        Manage complaints and users.
+
+                    </p>
+
+                </div>
+
+            </a>
+
+        </div>
+
+        <% } %>
 
     </div>
 

@@ -61,8 +61,14 @@ app.get("/register", (req, res) => {
 });
 
 // protected dashboard
-app.get("/dashboard", authMiddleware, (req, res) => {
-    res.render("dashboard");
+app.get("/dashboard", authMiddleware, async (req, res) => {
+
+    const user = await User.findById(req.user.id);
+
+    res.render("dashboard", {
+        user
+    });
+
 });
 
 
