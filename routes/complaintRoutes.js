@@ -16,13 +16,14 @@ router.post(
     complaintController.submitComplaint
 );
 
-module.exports = router;
-
 router.get(
     "/my-complaints",
     authMiddleware,
     complaintController.getMyComplaints
 );
+
+module.exports = router;
+
 
 // router.get(
 //     "/admin/dashboard",

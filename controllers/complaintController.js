@@ -1,27 +1,27 @@
 const Complaint = require("../models/Complaint");
 
 exports.submitComplaint = async (req, res) => {
+    console.log("===== Complaint Request =====");
+    console.log("User:", req.user);
+    console.log("Body:", req.body);
+
     try {
-        const {
-            title,
-            description,
-            location,
-            vehicleNumber
-        } = req.body;
+        const { vehicleNumber, category, description } = req.body;
 
         await Complaint.create({
             user: req.user.id,
-            title,
-            description,
-            location,
-            vehicleNumber
+            vehicleNumber,
+            category,
+            description
         });
 
         res.redirect("/dashboard");
 
     } catch (err) {
-        console.log(err);
-        res.send("Error submitting complaint");
+        console.error("===== COMPLAINT ERROR =====");
+        console.error(err);
+
+        res.status(500).send(err.message);
     }
 };
 
