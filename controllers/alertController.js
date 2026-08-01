@@ -1,51 +1,35 @@
 const Alert = require("../models/Alert");
 
-// Save SOS Alert
 exports.createAlert = async (req, res) => {
-
     try {
-
         const { latitude, longitude } = req.body;
 
-        await Alert.create({
-            user: req.user.id,
-            latitude,
-            longitude
-        });
+        if (latitude === undefined || longitude === undefined) {
+            return res.status(400).json({
+                success: false,
+                message: "Location coordinates are required."
+            });
+        }
 
-        res.json({
-            success: true,
-            message: "SOS Alert Sent Successfully"
-        });
+        await Alert.create({ user: req.user.id, latitude, longitude });
+
+        res.json({ success: true, message: "SOS Alert Sent Successfully" });
 
     } catch (err) {
-
-        console.log(err);
-
-        res.status(500).json({
-            success: false,
-            message: "Server Error"
-        });
-
+        console.error("Create alert error:", err.message);
+        res.status(500).json({ success: false, message: "Server Error" });
     }
 };
 
-// Alert History
 exports.getAlerts = async (req, res) => {
-
     try {
-
-        const alerts = await Alert.find({
-            user: req.user.id
-        }).sort({ createdAt: -1 });
-
+        const alerts = await Alert.find({ user: req.user.id }).sort({ createdAt: -1 });
         res.render("alerts", { alerts });
-
     } catch (err) {
-
-        console.log(err);
-
-        res.status(500).send("Server Error");
-
+        console.error("Get alerts error:", err.message);
+        res.status(500).render("error", {
+            message: "Could not load alerts.",
+            status: 500
+        });
     }
 };

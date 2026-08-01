@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error <%= status %> | SafeTrace</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand">SafeTrace</span>
+    </nav>
+    <div style="max-width:500px;margin:80px auto;text-align:center;">
+        <h1 class="page-title"><%= status %></h1>
+        <p class="page-subtitle"><%= message %></p>
+        <a href="/" class="btn-primary" style="display:inline-block;padding:10px 20px;border-radius:8px;color:#fff;text-decoration:none;">Go Home</a>
+    </div>
+</body>
+</html>
