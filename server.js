@@ -22,7 +22,20 @@ const profileRoutes = require("./routes/profileRoutes");
 const app = express();
 
 // Security & core middleware
-app.use(helmet());
+app.use(
+    helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                styleSrc: ["'self'", "https://cdn.jsdelivr.net", "https://fonts.googleapis.com", "'unsafe-inline'"],
+                fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
+                scriptSrc: ["'self'", "https://cdn.jsdelivr.net"],
+                imgSrc: ["'self'", "data:"]
+            }
+        }
+    })
+);
+
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

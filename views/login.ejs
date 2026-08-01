@@ -37,6 +37,12 @@
 
                 </p>
 
+                <% if (typeof error !== "undefined" && error) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+
                 <form action="/login" method="POST">
 
                     <div class="mb-3">
