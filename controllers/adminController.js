@@ -1,3 +1,5 @@
+const { buildVehicleRiskProfiles } = require("../utils/riskScore");
+
 const Complaint = require("../models/Complaint");
 
 exports.dashboard = async (req, res) => {
@@ -18,6 +20,8 @@ exports.dashboard = async (req, res) => {
         const resolvedComplaints = complaints.filter(
             c => c.status === "Resolved"
         ).length;
+
+        const riskProfiles = buildVehicleRiskProfiles(complaints);
 
         res.render("adminDashboard", {
             complaints,
