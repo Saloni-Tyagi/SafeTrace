@@ -95,6 +95,50 @@
 
     </div>
 
+    <h3 class="page-title mt-5">
+        🚨 Vehicle Risk Profiles
+    </h3>
+    <p class="page-subtitle">
+        Vehicles ranked by risk score based on complaint frequency, severity, and recency.
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Vehicle Number</th>
+                    <th>Complaints</th>
+                    <th>Risk Score</th>
+                    <th>Risk Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (riskProfiles.length === 0) { %>
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">No complaints yet.</td>
+                    </tr>
+                <% } else { %>
+                    <% riskProfiles.forEach(profile => { %>
+                        <tr>
+                            <td><strong><%= profile.vehicleNumber %></strong></td>
+                            <td><%= profile.complaintCount %></td>
+                            <td><%= profile.score %></td>
+                            <td>
+                                <% if (profile.label === "High") { %>
+                                    <span class="badge bg-danger">High</span>
+                                <% } else if (profile.label === "Medium") { %>
+                                    <span class="badge bg-warning text-dark">Medium</span>
+                                <% } else { %>
+                                    <span class="badge bg-success">Low</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
 </body>
